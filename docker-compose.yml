@@ -1,0 +1,40 @@
+version: "3"
+services:
+ react-client:
+   image: react-client
+   container_name: react-app
+   #make the app alive and listern to request
+   stdin_open: true
+   ports: 
+      - '80:80'
+   networks:
+      - mern-app
+ express-api:
+   image: express-api
+   container_name: express-server
+   ports:
+      - "4000:4000"
+   networks:
+      - mern-app
+  # make the dependency
+   depends_on:
+      - mongo
+ mongo:
+   image: mongo:latest
+   container_name: mongo-db
+   ports:
+      - "27018:27017"
+   networks:
+      - mern-app
+    # define the volume of mongo db
+   volumes:
+      - mongo-data:/data/db
+
+  #create a network between the container
+networks:
+  mern-app:
+   name: mern-app
+   driver: bridge     
+volumes:
+  mongo-data:
+    driver: local 
