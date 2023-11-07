@@ -4,7 +4,7 @@ const PORT = 4000;
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-//mongo means the database used in docker and mentioned in compose file
+//mongo means the database used in docker and mentioned in compose file test
 mongoose.connect("mongodb://mongo/register",{
   useNewUrlParser: true,
   useUnifiedTopology: true,
